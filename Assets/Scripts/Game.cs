@@ -13,7 +13,7 @@ public class Game {
         switch (level) 
         {
             case 1:
-                Duration = 20;
+                Duration = 30;
                 GameState = GameStates.InPlay;
                 MazeScale = 2;
                 MazeRows = 10;

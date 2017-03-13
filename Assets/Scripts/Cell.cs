@@ -143,7 +143,7 @@ public class Cell {
         if (Row == 0 && Column == 0)
         {
             GameObject runner = (GameObject)GameObject.Instantiate(e.Runner);
-            runner.transform.position = new Vector3(x + (horiWallScale / 2), 0, z + (vertWallScale / 2));
+            runner.transform.position = new Vector3(x - (horiWallScale / 2), 0, z + (vertWallScale / 2));
             runner.transform.localScale = new Vector3(0.5f * e.Scale, 0.5f * e.Scale, 0.5f * e.Scale);
         }
 

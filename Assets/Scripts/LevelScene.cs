@@ -3,6 +3,7 @@ using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class LevelScene : MonoBehaviour {
 
@@ -144,12 +145,14 @@ public class LevelScene : MonoBehaviour {
             currentLevel++;
             PlayerPrefs.SetInt("Level", currentLevel);
             Thread.Sleep(1000); //just for good user experience
-            Application.LoadLevel("Welcome");
+            //Application.LoadLevel("Welcome");
+            SceneManager.LoadScene("Welcome");
         }
         else if (Game.GameState == GameStates.Loss)
         {
             Thread.Sleep(1000); //just for good user experience
-            Application.LoadLevel("Welcome");
+            //Application.LoadLevel("Welcome");
+            SceneManager.LoadScene("Welcome");
         }
     }
 
