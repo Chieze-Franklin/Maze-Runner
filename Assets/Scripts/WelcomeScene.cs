@@ -31,10 +31,14 @@ public class WelcomeScene : MonoBehaviour {
     }
 
 	void OnGUI () {
+        var gameCompleted = false;
+
         if (Game.GameState == GameStates.Win)
         {
             GUI.DrawTexture(backgroundRect, winBackgroundTexture);
             playText = string.Format("Move to Level {0}", PlayerPrefs.GetInt("Level"));
+
+            gameCompleted = PlayerPrefs.GetInt("Level") == Game.EndLevel;
         }
         else if (Game.GameState == GameStates.Loss)
         {
@@ -46,17 +50,26 @@ public class WelcomeScene : MonoBehaviour {
             GUI.DrawTexture(backgroundRect, welcomeBackgroundTexture);
             //GUI.Label(new Rect(10, 10, 600, 600), instruction);
             playText = string.Format("Play Level {0}", PlayerPrefs.GetInt("Level"));
+
+            gameCompleted = PlayerPrefs.GetInt("Level") == Game.EndLevel;
         }
 
-        if (GUI.Button(playRect, playText)) 
+        if (!gameCompleted)
         {
-            Application.LoadLevel(PlayerPrefs.GetInt("Level"));
+            if (GUI.Button(playRect, playText))
+            {
+                Game.LoadLevel(PlayerPrefs.GetInt("Level"));
+            }
+        }
+        else
+        {
+            GUI.Label(playRect, "You have completed the game!");
         }
 
         if (GUI.Button(playFromStartRect, "Play From Beginning"))
         {
             StartFromBeginning();
-            Application.LoadLevel(PlayerPrefs.GetInt("Level"));
+            Game.LoadLevel(PlayerPrefs.GetInt("Level"));
         }
 
         if (GUI.Button(exitRect, "Exit"))

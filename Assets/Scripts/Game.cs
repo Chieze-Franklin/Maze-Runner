@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Game {
     public static float Duration { get; set; }
@@ -7,6 +8,19 @@ public class Game {
     public static int MazeColumns { get; set; }
     public static int MazeRows { get; set; }
     public static float MazeScale { get; set; }
+
+    public const int EndLevel = 3;
+
+    public static void LoadLevel(int level)
+    {
+        //Application.LoadLevel(level);
+        SceneManager.LoadScene(level);
+    }
+    public static void LoadWelcomeLevel()
+    {
+        //Application.LoadLevel("Welcome");
+        SceneManager.LoadScene("Welcome");
+    }
 
     public static void SetLevelStats(int level) 
     {
